@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api/docs
+  swagger-ui:
+    path: swagger.html
+
+spring:
+  messages:
+    basename: classpath:messages/message-error
+    encoding: UTF-8
+    cache-duration: 10
+  profiles:
+    active: test
+  config:
+    import:
+      - 'classpath:profiles/application-test.yml'
