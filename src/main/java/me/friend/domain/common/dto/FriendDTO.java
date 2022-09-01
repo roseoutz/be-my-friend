@@ -12,6 +12,7 @@ public class FriendDTO extends BaseDto {
 
     private String oid;
     private String type;
+    private String breed;
     private String name;
     private LocalDateTime birthdate;
     @Builder.Default

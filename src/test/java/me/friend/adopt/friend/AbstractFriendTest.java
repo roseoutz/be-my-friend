@@ -12,6 +12,7 @@ public abstract class AbstractFriendTest {
         return FriendDTO.builder()
                 .oid(UUIDUtil.UUID())
                 .type("dog")
+                .breed("welsh corgi")
                 .name("jack")
                 .birthdate(LocalDateTime.now())
                 .adopted(false)
@@ -22,6 +23,7 @@ public abstract class AbstractFriendTest {
         return FriendDTO.builder()
                 .oid(UUIDUtil.UUID())
                 .type("dog")
+                .breed("welsh corgi")
                 .name(name)
                 .birthdate(LocalDateTime.now())
                 .adopted(false)
@@ -32,6 +34,7 @@ public abstract class AbstractFriendTest {
         return FriendDTO.builder()
                 .oid(UUIDUtil.UUID())
                 .type(type)
+                .breed("welsh corgi")
                 .name(name)
                 .birthdate(LocalDateTime.now())
                 .adopted(false)
@@ -43,6 +46,7 @@ public abstract class AbstractFriendTest {
         entity.setOid(dto.getOid());
         entity.setName(dto.getName());
         entity.setType(dto.getType());
+        entity.setBreed("welsh corgi");
         entity.setBirthdate(dto.getBirthdate());
         entity.setAdopted(dto.isAdopted());
 

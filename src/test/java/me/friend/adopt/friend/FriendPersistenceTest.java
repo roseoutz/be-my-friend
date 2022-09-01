@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.transaction.Transactional;
@@ -42,6 +43,26 @@ public class FriendPersistenceTest extends AbstractFriendTest {
 
         // verify
         assertEquals(entity.getOid(), saved.getOid());
+    }
+
+    @Transactional
+    @DisplayName("반려동물 정보 Repository 저장 오류 테스트")
+    @Test
+    void test_save_on_error() {
+
+        // given
+        FriendDTO friendDTO = getFriend();
+
+        //when
+        FriendEntity entity = new FriendEntity();
+        entity.setOid(friendDTO.getOid());
+        entity.setName(friendDTO.getName());
+        entity.setType(friendDTO.getType());
+        entity.setBirthdate(friendDTO.getBirthdate());
+        entity.setAdopted(friendDTO.isAdopted());
+
+        // verify
+        assertThrows(DataIntegrityViolationException.class, () -> repository.saveAndFlush(entity));
     }
 
     @Transactional
