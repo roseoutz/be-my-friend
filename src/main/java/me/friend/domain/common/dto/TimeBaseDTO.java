@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @SuperBuilder
-public abstract class BaseDto {
+public abstract class TimeBaseDTO {
 
     private LocalDateTime insertTime;
     private LocalDateTime updateTime;

@@ -2,7 +2,7 @@ package me.friend.domain.adopt.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.friend.domain.common.persistence.entity.BaseEntity;
+import me.friend.domain.common.persistence.entity.TimeBaseEntity;
 
 import javax.persistence.*;
 
@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(
-        name = "bmf_certification"
+        name = "bmf_certification_type"
 )
-public class CertificationEntity extends BaseEntity {
+public class CertificationTypeEntity extends TimeBaseEntity {
 
     @Id
     private String oid;

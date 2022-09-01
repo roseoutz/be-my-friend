@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @SuperBuilder
-public class FriendDTO extends BaseDto {
+public class FriendDTO extends TimeBaseDTO {
 
     private String oid;
     private String type;

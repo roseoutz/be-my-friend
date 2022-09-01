@@ -2,7 +2,7 @@ package me.friend.domain.adopt.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.friend.domain.common.persistence.entity.BaseEntity;
+import me.friend.domain.common.persistence.entity.TimeBaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(
         name = "bmf_certification_agency"
 )
-public class CertificationAgencyEntity extends BaseEntity {
+public class CertificationAgencyEntity extends TimeBaseEntity {
 
     @Id
     private String oid;
