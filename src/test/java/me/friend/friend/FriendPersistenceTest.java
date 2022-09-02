@@ -1,4 +1,4 @@
-package me.friend.adopt.friend;
+package me.friend.friend;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import me.friend.domain.adopt.persistence.entity.FriendEntity;

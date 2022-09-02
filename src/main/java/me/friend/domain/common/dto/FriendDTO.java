@@ -3,6 +3,7 @@ package me.friend.domain.common.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import me.friend.domain.common.dto.base.TimeBaseDTO;
 
 import java.time.LocalDateTime;
 

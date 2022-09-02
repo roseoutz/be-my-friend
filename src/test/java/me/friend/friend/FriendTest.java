@@ -1,4 +1,4 @@
-package me.friend.adopt.friend;
+package me.friend.friend;
 
 import me.friend.domain.common.dto.FriendDTO;
 import org.junit.jupiter.api.Test;

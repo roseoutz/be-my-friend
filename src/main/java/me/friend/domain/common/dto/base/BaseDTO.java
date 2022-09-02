@@ -1,4 +1,4 @@
-package me.friend.domain.common.dto;
+package me.friend.domain.common.dto.base;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;

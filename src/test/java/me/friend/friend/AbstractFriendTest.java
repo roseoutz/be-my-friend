@@ -1,4 +1,4 @@
-package me.friend.adopt.friend;
+package me.friend.friend;
 
 import me.friend.common.util.UUIDUtil;
 import me.friend.domain.adopt.persistence.entity.FriendEntity;

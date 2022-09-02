@@ -24,7 +24,4 @@ public class BreederCertificationEntity {
     @ManyToOne(targetEntity = CertificationTypeEntity.class, fetch = FetchType.LAZY)
     private CertificationTypeEntity certificationTypeEntity;
 
-    @ManyToOne(targetEntity = BreederEntity.class, fetch = FetchType.LAZY)
-    private BreederEntity breeder;
-
 }

@@ -20,6 +20,6 @@ public class ManagerEntity extends TimeBaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "breeders", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "oid", cascade = CascadeType.REMOVE)
     private List<BreederEntity> breeders;
 }
