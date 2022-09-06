@@ -30,10 +30,10 @@ public class BreederEntity extends TimeBaseEntity {
 
     private String imageUrl;
 
-    @OneToMany(mappedBy = "oid")
+    @OneToMany(mappedBy = "oid", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BreederCertificationEntity> certificationEntities;
 
-    @OneToMany(mappedBy = "oid", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "oid", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FriendEntity> friends;
 
     @ManyToOne(targetEntity = ManagerEntity.class, fetch = FetchType.LAZY)

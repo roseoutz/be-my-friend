@@ -26,10 +26,11 @@ public class FriendEntity extends TimeBaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(targetEntity = BreederEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breeder")
     private BreederEntity breeder;
 
-    @OneToOne(targetEntity = FriendMedicalInfoEntity.class, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private FriendMedicalInfoEntity medicalInfo;
 
     private String imageUrl;

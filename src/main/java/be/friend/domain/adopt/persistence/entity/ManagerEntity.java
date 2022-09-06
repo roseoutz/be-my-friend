@@ -5,6 +5,7 @@ import lombok.Setter;
 import be.friend.domain.common.persistence.entity.TimeBaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter

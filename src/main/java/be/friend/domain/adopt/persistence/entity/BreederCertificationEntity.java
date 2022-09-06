@@ -21,7 +21,8 @@ public class BreederCertificationEntity {
 
     private LocalDate acquisitionDate;
 
-    @ManyToOne(targetEntity = CertificationTypeEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "certification_type")
     private CertificationTypeEntity certificationTypeEntity;
 
 }

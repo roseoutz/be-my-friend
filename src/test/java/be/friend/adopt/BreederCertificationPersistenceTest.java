@@ -22,6 +22,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -292,13 +295,33 @@ public class BreederCertificationPersistenceTest {
     @Transactional
     @Test
     void test_save_breeder_certification() {
+        //given
+        CertificationAgencyEntity entity = getAgencyEntity();
+        certificationAgencyTestService.save(entity);
+        CertificationTypeEntity typeEntity = getTypeEntity();
+        typeEntity.setCertificationAgency(entity);
+        certificationTypeTestService.save(typeEntity);
+        BreederEntity breederEntity = getBreederEntity();
+        BreederEntity saved = breederTestService.save(breederEntity);
+        final String oid = saved.getOid();
 
-    }
+        //when
+        BreederCertificationEntity breederCertificationEntity = getBreederCertificationEntity();
+        breederCertificationEntity.setCertificationTypeEntity(typeEntity);
 
-    @DisplayName("브리더 취득 자격증 수정 테스트")
-    @Transactional
-    @Test
-    void test_update_breeder_certification() {
+        List<BreederCertificationEntity> certificationEntities = new ArrayList<>();
+        certificationEntities.add(breederCertificationEntity);
+        saved.setCertificationEntities(certificationEntities);
+
+        breederTestService.save(saved);
+
+        //verify
+        breederTestService.findById(oid)
+                .ifPresentOrElse(
+                        e -> assertEquals(1, e.getCertificationEntities().size()),
+                        Assertions::fail
+                );
+
 
     }
 
@@ -306,6 +329,47 @@ public class BreederCertificationPersistenceTest {
     @Transactional
     @Test
     void test_delete_breeder_certification() {
+        //given
+        CertificationAgencyEntity entity = getAgencyEntity();
+        certificationAgencyTestService.save(entity);
+        CertificationTypeEntity typeEntity = getTypeEntity();
+        typeEntity.setCertificationAgency(entity);
+        certificationTypeTestService.save(typeEntity);
+        BreederEntity breederEntity = getBreederEntity();
+        BreederEntity saved = breederTestService.save(breederEntity);
+        final String oid = saved.getOid();
+        BreederCertificationEntity breederCertificationEntity = getBreederCertificationEntity();
+        breederCertificationEntity.setCertificationTypeEntity(typeEntity);
+
+        List<BreederCertificationEntity> certificationEntities = new ArrayList<>();
+        certificationEntities.add(breederCertificationEntity);
+        saved.setCertificationEntities(certificationEntities);
+
+        breederTestService.save(saved);
+
+        //when
+        breederTestService.findById(oid)
+                        .ifPresent(
+                                e -> {
+                                    e.getCertificationEntities().remove(0);
+                                    breederTestService.save(e);
+                                }
+                        );
+
+
+        //verify
+        breederTestService.findById(oid)
+                .ifPresentOrElse(
+                        e -> assertEquals(0, e.getCertificationEntities().size()),
+                        Assertions::fail
+                );
+
+        breederCertificationTestService.findById(breederCertificationEntity.getOid())
+                .ifPresentOrElse(
+                        e -> fail(),
+                        () -> assertTrue(true)
+                );
+
 
     }
 

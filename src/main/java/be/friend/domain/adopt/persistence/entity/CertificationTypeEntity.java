@@ -21,7 +21,8 @@ public class CertificationTypeEntity extends TimeBaseEntity {
 
     private String description;
 
-    @ManyToOne(targetEntity = CertificationAgencyEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "certification_agency")
     private CertificationAgencyEntity certificationAgency;
 
 }

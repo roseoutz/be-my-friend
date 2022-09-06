@@ -17,7 +17,8 @@ public class FriendVaccinationEntity {
     @Id
     private String oid;
 
-    @ManyToOne(targetEntity = VaccineInfoEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vaccine_info")
     private VaccineInfoEntity vaccineInfoEntity;
 
     private int vaccinationCount;
