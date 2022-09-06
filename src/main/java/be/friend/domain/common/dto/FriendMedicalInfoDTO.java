@@ -10,5 +10,5 @@ import java.util.List;
 public class FriendMedicalInfoDTO {
 
     private String oid;
-    private List<FriendVaccinationDTO> friendVaccinationDTOS;
+    private List<FriendVaccinationDTO> friendVaccinations;
 }

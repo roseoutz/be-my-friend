@@ -15,6 +15,9 @@ public class FriendDTO extends TimeBaseDTO {
     private String type;
     private String breed;
     private String name;
+    private BreederDTO breeder;
+    private FriendMedicalInfoDTO friendMedicalInfo;
+    private String imageUrl;
     private LocalDateTime birthdate;
     @Builder.Default
     private boolean adopted = false;

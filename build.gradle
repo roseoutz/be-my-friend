@@ -17,6 +17,7 @@ ext {
     openApiVersion = "1.6.11"
     swaggerVersion = "3.0.0"
     uuidGeneratorVersion = "4.0.1"
+    jacksonVersion = '2.13.3'
 }
 
 configurations {
@@ -50,6 +51,9 @@ dependencies {
     implementation "org.springdoc:springdoc-openapi-webmvc-core:${openApiVersion}"
     implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
     // implementation "org.springdoc:springdoc-openapi-security:${openApiVersion}"
+
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 
     compileOnly 'org.projectlombok:lombok'
 

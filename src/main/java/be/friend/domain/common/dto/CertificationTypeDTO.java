@@ -10,5 +10,5 @@ public class CertificationTypeDTO {
     private String oid;
     private String certificationType;
     private String description;
-    private CertificationAgencyDTO certificationAgencyDTO;
+    private CertificationAgencyDTO certificationAgency;
 }

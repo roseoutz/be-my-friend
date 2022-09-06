@@ -1,13 +1,14 @@
 package be.friend.domain.common.dto;
 
-import lombok.Builder;
+import be.friend.domain.common.dto.base.TimeBaseDTO;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Getter
-@Builder
-public class BreederDTO {
+@SuperBuilder
+public class BreederDTO extends TimeBaseDTO {
 
     private String oid;
     private String name;
@@ -16,7 +17,7 @@ public class BreederDTO {
     private String address;
     private String snsAddress;
     private String imageUrl;
-    private List<BreederCertificationDTO> certificationDTOS;
-    private List<FriendDTO> friendDTOS;
-    private ManagerDTO managerDTO;
+    private List<BreederCertificationDTO> certifications;
+    private List<FriendDTO> friends;
+    private ManagerDTO manager;
 }

@@ -3,14 +3,14 @@ package be.friend.domain.common.dto;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Builder
 public class FriendVaccinationDTO {
 
     private String oid;
-    private VaccineInfoDTO vaccineInfoDTO;
+    private VaccineInfoDTO vaccineInfo;
     private int vaccinationCount;
-    private LocalDateTime lastVaccinationDate;
+    private LocalDate lastVaccinationDate;
 }

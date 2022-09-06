@@ -1,8 +1,11 @@
 package be.friend.domain.common.persistence.service;
 
-import java.util.List;
+import be.friend.domain.common.dto.SearchParam;
 
-public interface PersistenceService<D, T, ID> {
+import java.util.List;
+import java.util.Optional;
+
+public interface PersistenceService<D, ID> {
 
     /**
      * DTO를 저장소에 저장한다.
@@ -10,13 +13,13 @@ public interface PersistenceService<D, T, ID> {
      * @param dto
      * @return
      */
-    D add(T dto);
+    D add(D dto);
 
-    D update(T dto);
+    D update(D dto);
 
     void delete(ID oid);
 
-    D get(ID oid);
+    Optional<D> get(ID oid);
 
-    List<D> list();
+    List<D> list(SearchParam searchParam);
 }

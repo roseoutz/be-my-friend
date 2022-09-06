@@ -1,11 +1,12 @@
 package be.friend.domain.common.dto;
 
-import lombok.Builder;
+import be.friend.domain.common.dto.base.TimeBaseDTO;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
-@Builder
-public class CertificationAgencyDTO {
+@SuperBuilder
+public class CertificationAgencyDTO extends TimeBaseDTO {
 
     private String oid;
     private String name;
