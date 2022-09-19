@@ -1,6 +1,7 @@
 package be.friend.domain.adopt.persistence.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import be.friend.domain.common.persistence.entity.TimeBaseEntity;
 

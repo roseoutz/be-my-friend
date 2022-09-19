@@ -1,16 +1,39 @@
 package be.friend.domain.common.persistence.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class AbstractPersistenceService<R extends JpaRepository<T, ID>, T, D, ID> {
 
-    protected abstract R getRepository();
+    private final R repository;
+    private final JPAQueryFactory jpaQueryFactory;
+    private final ObjectMapper objectMapper;
 
-    protected abstract JPAQueryFactory getQueryFactory();
+    public AbstractPersistenceService(R repository, JPAQueryFactory jpaQueryFactory, ObjectMapper objectMapper) {
+        this.repository = repository;
+        this.jpaQueryFactory = jpaQueryFactory;
+        this.objectMapper = objectMapper;
+    }
 
-    protected abstract D convertToDTO(T entity);
+    protected R getRepository() {
+        return repository;
+    }
 
-    protected abstract T convertToEntity(D dto);
+    protected JPAQueryFactory getQueryFactory() {
+        return jpaQueryFactory;
+    }
+
+    protected D convertToDTO(T entity) {
+        return objectMapper.convertValue(entity, getDtoClass());
+    }
+
+    protected T convertToEntity(D dto) {
+        return objectMapper.convertValue(dto, getEntityClass());
+    }
+
+    protected abstract Class<D> getDtoClass();
+
+    protected abstract Class<T> getEntityClass();
 
 }

@@ -6,9 +6,9 @@ import be.friend.domain.common.dto.SearchParam;
 import be.friend.domain.common.persistence.service.AbstractPersistenceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
 import be.friend.domain.adopt.persistence.service.FriendPersistenceService;
 import be.friend.domain.common.dto.FriendDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,52 +16,61 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("friendJpaService")
-@RequiredArgsConstructor
-public class FriendJpaService implements FriendPersistenceService {
+public class FriendJpaService
+        extends AbstractPersistenceService <FriendRepository, FriendEntity, FriendDTO, String>
+        implements FriendPersistenceService {
 
-    private final JPAQueryFactory jpaQueryFactory;
-
-    private final FriendRepository friendRepository;
-
-    private final ObjectMapper objectMapper;
-
-    private FriendRepository getRepository() {
-        return friendRepository;
+    @Autowired
+    public FriendJpaService(FriendRepository repository, JPAQueryFactory jpaQueryFactory, ObjectMapper objectMapper) {
+        super(repository, jpaQueryFactory, objectMapper);
     }
 
-    private JPAQueryFactory getQueryFactory() {
-        return jpaQueryFactory;
+    @Override
+    protected Class<FriendDTO> getDtoClass() {
+        return FriendDTO.class;
     }
 
-    private FriendDTO convertToDTO(FriendEntity entity) {
-        return objectMapper.convertValue(entity, FriendDTO.class);
-    }
-
-    private FriendEntity convertToEntity(FriendDTO dto) {
-        return objectMapper.convertValue(dto, FriendEntity.class);
+    @Override
+    protected Class<FriendEntity> getEntityClass() {
+        return FriendEntity.class;
     }
 
     @Override
     @Transactional
     public FriendDTO add(FriendDTO dto) {
-        return null;
+        FriendEntity saved = getRepository().save(convertToEntity(dto));
+        return convertToDTO(saved);
     }
 
     @Override
     @Transactional
     public FriendDTO update(FriendDTO dto) {
-        return null;
+
+        Optional<FriendEntity> optional = getRepository().findById(dto.getOid());
+
+        if (optional.isEmpty()) {
+            // todo exceptionHandle
+            return null;
+        }
+
+        FriendEntity entity = optional.get();
+
+
+
+        return convertToDTO(entity);
     }
 
     @Override
     @Transactional
     public void delete(String oid) {
-        getRepository().deleteById(oid);
+        Optional.of(oid)
+                .ifPresent(id -> getRepository().deleteById(id));
     }
 
     @Override
     public Optional<FriendDTO> get(String oid) {
-        return Optional.empty();
+        return getRepository().findById(oid)
+                .map(this::convertToDTO);
     }
 
     public List<FriendDTO> list(SearchParam searchParam) {
