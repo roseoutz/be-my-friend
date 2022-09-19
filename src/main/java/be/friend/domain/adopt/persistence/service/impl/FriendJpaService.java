@@ -3,6 +3,8 @@ package be.friend.domain.adopt.persistence.service.impl;
 import be.friend.domain.adopt.persistence.entity.FriendEntity;
 import be.friend.domain.adopt.persistence.repository.FriendRepository;
 import be.friend.domain.common.dto.SearchParam;
+import be.friend.domain.common.exception.ErrorCode;
+import be.friend.domain.common.exception.FriendNotFoundException;
 import be.friend.domain.common.persistence.service.AbstractPersistenceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -49,13 +51,10 @@ public class FriendJpaService
         Optional<FriendEntity> optional = getRepository().findById(dto.getOid());
 
         if (optional.isEmpty()) {
-            // todo exceptionHandle
-            return null;
+            throw new FriendNotFoundException(ErrorCode.FRIEND_NOT_FOUND);
         }
 
         FriendEntity entity = optional.get();
-
-
 
         return convertToDTO(entity);
     }

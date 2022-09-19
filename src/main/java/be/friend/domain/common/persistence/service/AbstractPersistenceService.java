@@ -25,10 +25,16 @@ public abstract class AbstractPersistenceService<R extends JpaRepository<T, ID>,
     }
 
     protected D convertToDTO(T entity) {
+        if (entity == null) {
+            return null;
+        }
         return objectMapper.convertValue(entity, getDtoClass());
     }
 
     protected T convertToEntity(D dto) {
+        if (dto == null) {
+            return null;
+        }
         return objectMapper.convertValue(dto, getEntityClass());
     }
 
