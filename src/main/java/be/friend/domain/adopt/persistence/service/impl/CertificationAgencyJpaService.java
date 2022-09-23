@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("certificationAgencyJpaService")
 public class CertificationAgencyJpaService
     extends AbstractPersistenceService<CertificationAgencyRepository, CertificationAgencyEntity, CertificationAgencyDTO, String>
     implements CertificationAgencyPersistenceService {

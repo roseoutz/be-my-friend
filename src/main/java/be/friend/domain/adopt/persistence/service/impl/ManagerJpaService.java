@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("managerJpaService")
 public class ManagerJpaService
     extends AbstractPersistenceService<ManagerRepository, ManagerEntity, ManagerDTO, String>
     implements ManagerPersistenceService {

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public enum ErrorCode {
     UNDEFINED_ERROR("error.undefined"),
+    PARAMETER_IS_NULL("error.require.parameter.is.null"),
 
     /* Friend Error Code */
     FRIEND_NOT_FOUND("error.friend.not.found")

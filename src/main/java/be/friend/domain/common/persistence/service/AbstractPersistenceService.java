@@ -1,5 +1,6 @@
 package be.friend.domain.common.persistence.service;
 
+import be.friend.common.util.StringCheckUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -36,6 +37,10 @@ public abstract class AbstractPersistenceService<R extends JpaRepository<T, ID>,
             return null;
         }
         return objectMapper.convertValue(dto, getEntityClass());
+    }
+
+    protected boolean isNotNullAndNotEqual(String origin, String input) {
+        return (!StringCheckUtil.isNull(input) && !origin.equals(input));
     }
 
     protected abstract Class<D> getDtoClass();

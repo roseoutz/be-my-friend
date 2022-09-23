@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("friendMedicalInfoJpaService")
 public class FriendMedicalInfoJpaService
     extends AbstractPersistenceService<FriendMedicalInfoRepository, FriendMedicalInfoEntity, FriendMedicalInfoDTO, String>
     implements FriendMedicalInfoPersistenceService {

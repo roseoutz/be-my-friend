@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("vaccineInfoJpaService")
 public class VaccineInfoJpaService
     extends AbstractPersistenceService<VaccineInfoRepository, VaccineInfoEntity, VaccineInfoDTO, String>
     implements VaccineInfoPersistenceService {

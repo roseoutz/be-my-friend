@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("friendVaccinationJpaService")
 public class FriendVaccinationJpaService
     extends AbstractPersistenceService<FriendVaccinationRepository, FriendVaccinationEntity, FriendVaccinationDTO, String>
     implements FriendVaccinationPersistenceService {
